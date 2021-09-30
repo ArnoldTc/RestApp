@@ -1,0 +1,30 @@
+.cardBorder {
+  box-shadow: 0px 0px 10px 1px;
+  padding: 10px;
+  margin: 15px;
+}
+.contentBorder {
+  border: 2px solid #fff;
+  border-top: 0;
+  border-left: 0;
+  margin: 10px;
+}
+.subTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+h5 {
+  margin-left: 10px;
+  font-size: 0.83em !important;
+}
+h4 {
+  text-transform: capitalize;
+}
+h2 {
+  text-transform: capitalize;
+}
+.infoTitle {
+  display: flex;
+  justify-content: center;
+}

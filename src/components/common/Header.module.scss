@@ -1,0 +1,30 @@
+.brand {
+  margin-top: 1vh;
+  color: #fff;
+  font-size: 22px;
+}
+.navLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.navLink {
+  color: dodgerblue;
+  font-size: 18px;
+}
+.sideTitle {
+  color: #fff;
+  font-size: 16px;
+  align-self: self-end;
+}
+.navbar {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #fff;
+}
+.headerSection {
+  background-color: rgb(60, 158, 255);
+}
+.rightButton {
+  background-color: #fff;
+  border-radius: 30px;
+}

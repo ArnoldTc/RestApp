@@ -1,0 +1,36 @@
+.titles {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+.form {
+  padding: 15px;
+  margin-top: 1vh;
+}
+.selectSections {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 1200px) {
+  .titles {
+    margin-right: 10px;
+    margin-bottom: 0;
+    width: '50%';
+  }
+  .cols,
+  .cols,
+  .cols,
+  .cols,
+  .cols {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .form {
+    padding: 0;
+  }
+  .selectSections {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+    justify-content: space-between;
+  }
+}
