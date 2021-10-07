@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import styles from './FilmsPage.module.scss';
 import CardHandler from './components/CardHandler';
-import { Select, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import Header from '../common/header';
 
 export default function FilmsPage() {
@@ -48,8 +48,7 @@ export default function FilmsPage() {
           <Formik
             validationSchema={schema}
             onSubmit={values => {
-              settitle(values.title);
-              getApiRequest();
+              settitle(values.title, getApiRequest());
             }}
             initialValues={{
               title: '',

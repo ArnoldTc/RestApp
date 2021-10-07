@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import styles from './IndexPage.module.scss';
 

@@ -4,7 +4,7 @@ import styles from './CardHandler.module.scss';
 
 export default function CardHandler(props) {
   const howMuch = () => {
-    if (props.numberOfEpisodes != undefined) {
+    if (props.numberOfEpisodes !== undefined) {
       return (
         <h5>
           Epizódok száma:
@@ -17,7 +17,7 @@ export default function CardHandler(props) {
     }
   };
   const hasHossz = () => {
-    if (props.runningTimeInMinutes != undefined) {
+    if (props.runningTimeInMinutes !== undefined) {
       return (
         <h5>
           Hossz:
@@ -30,7 +30,7 @@ export default function CardHandler(props) {
     }
   };
   const whatType = () => {
-    if (props.titleType != undefined) {
+    if (props.titleType !== undefined) {
       return (
         <h5>
           Műfaj:
@@ -43,7 +43,7 @@ export default function CardHandler(props) {
     }
   };
   const hasEpisode = () => {
-    if (props.seriesStartYear != undefined && props.seriesEndYear != undefined) {
+    if (props.seriesStartYear !== undefined && props.seriesEndYear !== undefined) {
       return (
         <h5>
           Epizódok:
@@ -51,7 +51,7 @@ export default function CardHandler(props) {
           {props.seriesStartYear} - {props.seriesEndYear}
         </h5>
       );
-    } else if (props.seriesStartYear != undefined) {
+    } else if (props.seriesStartYear !== undefined) {
       return (
         <h5>
           Epizódok:

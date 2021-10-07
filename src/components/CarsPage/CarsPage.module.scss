@@ -10,16 +10,17 @@
   display: flex;
   flex-direction: row;
 }
+.inputDesign{
+  background-color: #fff;
+  border-radius: 20px;
+  padding-right: 10px;
+}
 @media (max-width: 1200px) {
   .titles {
     margin-right: 10px;
     margin-bottom: 0;
     width: '50%';
   }
-  .cols,
-  .cols,
-  .cols,
-  .cols,
   .cols {
     padding-top: 5px;
     padding-bottom: 5px;

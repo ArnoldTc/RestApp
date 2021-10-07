@@ -61,12 +61,11 @@ export default function CarsPage() {
           <Formik
             validationSchema={schema}
             onSubmit={values => {
-              setMake(values.make);
-              setModel(values.model);
-              setYear(values.year);
-              setFuel_type(values.fuel_type);
-              setLimit(values.limit);
-              return getApiRequest();
+              setMake(values.make, getApiRequest());
+              setModel(values.model, getApiRequest());
+              setYear(values.year, getApiRequest());
+              setFuel_type(values.fuel_type, getApiRequest());
+              setLimit(values.limit, getApiRequest());
             }}
             initialValues={{
               make: '',
@@ -91,15 +90,17 @@ export default function CarsPage() {
                     </Form.Group>
                   </Col>
                   <Col className={styles.cols}>
-                    <Form.Group controlId="formMake">
-                      <TextField
-                        id="standard-basic"
-                        name="model"
-                        value={values.model}
-                        onChange={handleChange}
-                        label="Típus"
-                      />
-                    </Form.Group>
+                    <div className={[styles.cols, styles.inputDesign]}>
+                      <Form.Group controlId="formMake">
+                        <TextField
+                          id="standard-basic"
+                          name="model"
+                          value={values.model}
+                          onChange={handleChange}
+                          label="Típus"
+                        />
+                      </Form.Group>
+                    </div>
                   </Col>
                 </Row>
                 <Row>
@@ -195,9 +196,9 @@ export default function CarsPage() {
         <Row>
           {carsData &&
             carsData.map(carData => {
-              var city_liter = carData.city_mpg * 0.425;
-              var highway_liter = carData.highway_mpg * 0.425;
-              var combination_liter = carData.combination_mpg * 0.425;
+              var city_liter = 100 / (carData.city_mpg * 0.425);
+              var highway_liter = 100 / (carData.highway_mpg * 0.425);
+              var combination_liter = 100 / (carData.combination_mpg * 0.425);
               return (
                 <CardHandler
                   id={carData.id}
