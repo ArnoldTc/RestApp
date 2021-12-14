@@ -18,15 +18,9 @@ export default function CarsPage() {
   });
 
   const [carsData, setCarsData] = useState([]);
-
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
-  const [year, setYear] = useState();
-  const [fuel_type, setFuel_type] = useState();
-  const [limit, setLimit] = useState();
   const [arrayError, setArrayErro] = useState('');
 
-  var getApiRequest = props => {
+  var getApiRequest = (make, model, year, fuel_type, limit) => {
     var options = {
       method: 'GET',
       url: 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars',
@@ -60,12 +54,8 @@ export default function CarsPage() {
         <div className={styles.form}>
           <Formik
             validationSchema={schema}
-            onSubmit={values => {
-              setMake(values.make, getApiRequest());
-              setModel(values.model, getApiRequest());
-              setYear(values.year, getApiRequest());
-              setFuel_type(values.fuel_type, getApiRequest());
-              setLimit(values.limit, getApiRequest());
+            onSubmit={async values => {
+              await getApiRequest(values.make, values.model, values.year, values.fuel_type, values.limit);
             }}
             initialValues={{
               make: '',
@@ -75,7 +65,7 @@ export default function CarsPage() {
               limit: '',
             }}
           >
-            {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
+            {({ handleSubmit, handleChange, values }) => (
               <Form noValidate onSubmit={handleSubmit}>
                 <Row>
                   <Col md="2" className={styles.cols}>

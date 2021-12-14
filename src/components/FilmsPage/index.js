@@ -14,11 +14,9 @@ export default function FilmsPage() {
   });
 
   const [filmsData, setFilmsData] = useState([]);
-
-  const [title, settitle] = useState('');
   const [arrayError, setArrayErro] = useState('');
 
-  var getApiRequest = () => {
+  var getApiRequest = (title) => {
     var options = {
       method: 'GET',
       url: 'https://imdb8.p.rapidapi.com/title/find',
@@ -47,8 +45,8 @@ export default function FilmsPage() {
         <div className={styles.form}>
           <Formik
             validationSchema={schema}
-            onSubmit={values => {
-              settitle(values.title, getApiRequest());
+            onSubmit={async (values) => {
+              await getApiRequest(values.title)
             }}
             initialValues={{
               title: '',
