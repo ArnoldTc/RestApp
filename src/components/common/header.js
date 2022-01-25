@@ -1,24 +1,18 @@
-import React from 'react';
-
-import { Container } from 'react-bootstrap';
-import { Nav } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Nav } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import styles from './Header.module.scss';
+import { ReactComponent as Logo } from './tmdb.svg';
 
-export default function Header(props) {
+function Header(props) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <div className={styles.headerSection}>
-      <Container className={styles.navbar}>
-        <Navbar.Brand href="/">
-          <div className={styles.brand}>Mit szeretnél?</div>
-        </Navbar.Brand>
-        <div className={styles.navLine}>
-          <div className={styles.sideTitle}>{props.now} Keresése</div>
-          <Nav.Link className={styles.rightButton} href={props.link}>
-            <div className={styles.navLink}>{props.type} Keresése</div>
-          </Nav.Link>
-        </div>
-      </Container>
-    </div>
+    <Navbar expanded={expanded} expand="md" className={styles.navbar}>
+      <Navbar.Brand href="/" className={styles.logo}>
+        <Logo />
+      </Navbar.Brand>
+    </Navbar>
   );
 }
+export default Header;

@@ -1,98 +1,78 @@
-import React, { useState } from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import axios from 'axios';
-import { Formik } from 'formik';
-import * as yup from 'yup';
 import styles from './FilmsPage.module.scss';
 import CardHandler from './components/CardHandler';
-import { TextField } from '@material-ui/core';
-import Header from '../common/header';
+import { Input, TextField } from '@mui/material';
 
 export default function FilmsPage() {
-  const schema = yup.object().shape({
-    title: yup.string(),
-  });
-
   const [filmsData, setFilmsData] = useState([]);
-  const [arrayError, setArrayErro] = useState('');
 
-  var getApiRequest = (title) => {
+  var getApiRequest = title => {
+    console.log('title: ' + title);
     var options = {
       method: 'GET',
-      url: 'https://imdb8.p.rapidapi.com/title/find',
-      params: { q: title },
-      headers: {
-        'x-rapidapi-host': 'imdb8.p.rapidapi.com',
-        'x-rapidapi-key': '6954c35583msh850c667a5c66428p13f004jsndafdf158cd4f',
-      },
+      url: 'https://api.themoviedb.org/3/search/movie',
+      params: { api_key: 'b1039975e8b3741cdafd37bbf1ab2720', query: title },
     };
 
     axios
       .request(options)
       .then(function (response) {
-        setArrayErro('');
         setFilmsData(response.data.results);
         console.log(response.data.results);
       })
       .catch(function (error) {
         console.error(error);
       });
+    console.log(title);
   };
+  useEffect(() => {
+    var options = {
+      method: 'GET',
+      url: 'https://api.themoviedb.org/3/movie/popular',
+      params: { api_key: 'b1039975e8b3741cdafd37bbf1ab2720' },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        setFilmsData(response.data.results);
+        console.log(response.data.results);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
   return (
-    <div>
-      <Header link="/cars" type="Autó" now="Film" />
+    <>
       <Container>
-        <div className={styles.form}>
-          <Formik
-            validationSchema={schema}
-            onSubmit={async (values) => {
-              await getApiRequest(values.title)
-            }}
-            initialValues={{
-              title: '',
-            }}
-          >
-            {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
-              <Form noValidate onSubmit={handleSubmit}>
-                <div className={styles.searchBar}>
-                  <Col md="2">
-                    <Form.Group controlId="formtitle">
-                      <TextField
-                        id="standard-basic"
-                        name="title"
-                        value={values.title}
-                        onChange={handleChange}
-                        label="Cím"
-                      />
-                    </Form.Group>
-                  </Col>
-                </div>
-                <Button type="submit">Keresés</Button>
-                <p>{arrayError}</p>
-              </Form>
-            )}
-          </Formik>
+        <div className={styles.searchBar}>
+          <TextField
+            fullWidth
+            autoFocus
+            variant="filled"
+            placeholder="Search..."
+            onChange={e => getApiRequest(e.target.value)}
+          />
         </div>
-      </Container>
-      <Container>
         <Row>
           {filmsData &&
-            filmsData.map(filmData => {
+            filmsData.slice(0, 10).map(filmData => {
               return (
-                <CardHandler
-                  id={filmData.id}
-                  title={filmData.title}
-                  year={filmData.year}
-                  runningTimeInMinutes={filmData.runningTimeInMinutes}
-                  titleType={filmData.titleType}
-                  numberOfEpisodes={filmData.numberOfEpisodes}
-                  seriesStartYear={filmData.seriesStartYear}
-                  seriesEndYear={filmData.seriesEndYear}
-                />
+                <Col lg="3">
+                  <CardHandler
+                    id={filmData.id}
+                    title={filmData.title}
+                    filmId={filmData.id}
+                    date={filmData.release_date}
+                    image={filmData.poster_path}
+                  />
+                </Col>
               );
             })}
         </Row>
       </Container>
-    </div>
+    </>
   );
 }

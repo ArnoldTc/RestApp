@@ -1,30 +1,12 @@
-.brand {
-  margin-top: 1vh;
-  color: #fff;
-  font-size: 22px;
-}
-.navLine {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.navLink {
-  color: dodgerblue;
-  font-size: 18px;
-}
-.sideTitle {
-  color: #fff;
-  font-size: 16px;
-  align-self: self-end;
-}
 .navbar {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #fff;
+  position: absolute;
+  padding-left: 5%;
 }
-.headerSection {
-  background-color: rgb(60, 158, 255);
+.logo {
+  width: 150px;
 }
-.rightButton {
-  background-color: #fff;
-  border-radius: 30px;
+@media (max-width: 650px) {
+  .logo {
+    width: 100px;
+  }
 }

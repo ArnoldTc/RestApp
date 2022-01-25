@@ -1,0 +1,25 @@
+.castCard {
+  max-width: 200px;
+}
+.personInfo {
+    display: inline-grid;
+    align-items: center;
+    text-align: center;
+
+}
+.personCard {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-between;
+  .personData {
+    display: none;
+  }
+}
+.personCard:hover {
+  background-color: #000000a4;
+  .personData {
+    display: grid;
+    color: #8f8e8e;
+  }
+}
